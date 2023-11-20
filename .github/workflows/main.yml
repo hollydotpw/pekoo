@@ -1,0 +1,19 @@
+on:
+  push:
+    branches:    
+      - master 
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: oven-sh/setup-bun@v1
+    - name: Install Dependencies
+      run: bun install
+    - name: Build library
+      run: bun run build
+    - name: Lint the code
+      run: bun lint
+    - name: Run tests
+      run: bun test
